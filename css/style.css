@@ -1,0 +1,1327 @@
+/* ============================================================
+   SkillHub - Feuille de style principale
+   Auteur : Dravel IMBOLO - EC01 2025-2026
+
+   Sommaire :
+   1. Variables et reset
+   2. Utilitaires
+   3. En-tete et navigation
+   4. Section Hero
+   5. Section Statistiques
+   6. Section Fonctionnalites
+   7. Section Formations (AJAX)
+   8. Section Appel a l'action
+   9. Section Contact et formulaire
+   10. Pied de page
+   11. Bouton retour haut
+   12. Media queries (responsive)
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. VARIABLES ET RESET
+   ------------------------------------------------------------ */
+:root {
+  /* Palette - uniquement ces 4 couleurs */
+  --bleu      : #076DAF;
+  --vert      : #00C24D;
+  --fond      : #E3F2EB;
+  --blanc     : #FEFEFE;
+
+  /* Texte et neutres derives de la palette */
+  --texte      : #0e1a12;
+  --texte-doux : #4a5c52;
+  --bordure    : #cdddd4;
+  --fond-leger : #f4f9f6;
+
+  /* Typographie */
+  --titre-police : 'Sora', sans-serif;
+  --corps-police : 'DM Sans', sans-serif;
+
+  /* Espacements */
+  --section-padding : 5rem 0;
+  --rayon           : 4px;
+  --max-largeur     : 1100px;
+  --transition      : 0.18s ease;
+}
+
+*, *::before, *::after {
+  box-sizing : border-box;
+  margin     : 0;
+  padding    : 0;
+}
+
+html {
+  scroll-behavior : smooth;
+  font-size       : 16px;
+  -webkit-font-smoothing : antialiased;
+}
+
+body {
+  font-family : var(--corps-police);
+  background  : var(--blanc);
+  color       : var(--texte);
+  line-height : 1.7;
+}
+
+img { max-width: 100%; display: block; }
+ul  { list-style: none; }
+a   { color: inherit; text-decoration: none; }
+
+/* ------------------------------------------------------------
+   2. UTILITAIRES
+   ------------------------------------------------------------ */
+.conteneur {
+  max-width : var(--max-largeur);
+  margin    : 0 auto;
+  padding   : 0 2rem;
+}
+
+/* Boutons */
+.btn {
+  display      : inline-flex;
+  align-items  : center;
+  gap          : 0.45rem;
+  padding      : 0.7rem 1.6rem;
+  font-family  : var(--titre-police);
+  font-weight  : 600;
+  font-size    : 0.88rem;
+  border       : 2px solid transparent;
+  border-radius : var(--rayon);
+  cursor       : pointer;
+  transition   : background var(--transition), color var(--transition), border-color var(--transition);
+  white-space  : nowrap;
+}
+
+.btn-bleu {
+  background   : var(--bleu);
+  color        : var(--blanc);
+  border-color : var(--bleu);
+}
+.btn-bleu:hover, .btn-bleu:focus-visible {
+  background   : var(--blanc);
+  color        : var(--bleu);
+}
+
+.btn-vert {
+  background   : var(--vert);
+  color        : var(--blanc);
+  border-color : var(--vert);
+}
+.btn-vert:hover, .btn-vert:focus-visible {
+  background   : var(--blanc);
+  color        : var(--vert);
+}
+
+.btn-contour {
+  background   : transparent;
+  color        : var(--bleu);
+  border-color : var(--bleu);
+}
+.btn-contour:hover, .btn-contour:focus-visible {
+  background : var(--bleu);
+  color      : var(--blanc);
+}
+
+.btn-blanc {
+  background   : var(--blanc);
+  color        : var(--bleu);
+  border-color : var(--blanc);
+  font-weight  : 700;
+}
+.btn-blanc:hover, .btn-blanc:focus-visible {
+  background : var(--fond);
+}
+
+.btn-contour-blanc {
+  background   : transparent;
+  color        : var(--blanc);
+  border-color : rgba(255,255,255,0.6);
+}
+.btn-contour-blanc:hover, .btn-contour-blanc:focus-visible {
+  background   : var(--blanc);
+  color        : var(--bleu);
+  border-color : var(--blanc);
+}
+
+/* En-tetes de section */
+.section-label {
+  font-family    : var(--titre-police);
+  font-size      : 0.72rem;
+  font-weight    : 700;
+  letter-spacing : 0.14em;
+  text-transform : uppercase;
+  color          : var(--vert);
+  display        : block;
+  margin-bottom  : 0.65rem;
+}
+
+.section-titre {
+  font-family : var(--titre-police);
+  font-size   : clamp(1.6rem, 3vw, 2.2rem);
+  font-weight : 800;
+  line-height : 1.2;
+  color       : var(--texte);
+  margin-bottom : 1rem;
+}
+
+.section-sous-titre {
+  font-size   : 1rem;
+  color       : var(--texte-doux);
+  max-width   : 540px;
+  line-height : 1.65;
+}
+
+/* Apparition au scroll */
+.apparait {
+  opacity   : 0;
+  transform : translateY(16px);
+  transition : opacity 0.4s ease, transform 0.4s ease;
+}
+.apparait.visible {
+  opacity   : 1;
+  transform : translateY(0);
+}
+
+/* Separateur */
+.separateur {
+  width      : 40px;
+  height     : 3px;
+  background : var(--vert);
+  margin     : 1rem 0 1.5rem;
+  border     : none;
+}
+
+/* ------------------------------------------------------------
+   3. EN-TETE ET NAVIGATION
+   ------------------------------------------------------------ */
+#entete {
+  position      : fixed;
+  top           : 0;
+  left          : 0;
+  right         : 0;
+  z-index       : 200;
+  background    : var(--blanc);
+  border-bottom : 1px solid var(--bordure);
+  transition    : box-shadow var(--transition);
+}
+
+#entete.ombre {
+  box-shadow : 0 2px 12px rgba(7, 109, 175, 0.08);
+}
+
+.entete-interieur {
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  height          : 68px;
+}
+
+.logo {
+  display     : flex;
+  align-items : center;
+  gap         : 0.5rem;
+  font-family : var(--titre-police);
+  font-weight : 800;
+  font-size   : 1.15rem;
+  color       : var(--bleu);
+}
+
+.logo img {
+  height : 32px;
+  width  : auto;
+}
+
+/* Navigation desktop */
+.nav-liens {
+  display     : flex;
+  align-items : center;
+  gap         : 0.2rem;
+}
+
+.nav-liens a {
+  font-size     : 0.88rem;
+  font-weight   : 500;
+  color         : var(--texte-doux);
+  padding       : 0.45rem 1rem;
+  border-radius : var(--rayon);
+  transition    : color var(--transition), background var(--transition);
+  position      : relative;
+}
+
+.nav-liens a::after {
+  content    : '';
+  position   : absolute;
+  bottom     : 4px;
+  left       : 1rem;
+  right      : 1rem;
+  height     : 2px;
+  background : var(--bleu);
+  transform  : scaleX(0);
+  transition : transform var(--transition);
+}
+
+.nav-liens a:hover {
+  color : var(--bleu);
+}
+
+.nav-liens a:hover::after {
+  transform : scaleX(1);
+}
+
+.nav-actions {
+  display     : flex;
+  align-items : center;
+  gap         : 0.75rem;
+}
+
+/* Burger */
+.burger {
+  display         : none;
+  flex-direction  : column;
+  justify-content : center;
+  gap             : 5px;
+  width           : 40px;
+  height          : 40px;
+  background      : none;
+  border          : 1px solid var(--bordure);
+  border-radius   : var(--rayon);
+  padding         : 9px;
+  cursor          : pointer;
+  transition      : border-color var(--transition);
+}
+
+.burger:hover { border-color: var(--bleu); }
+
+.burger span {
+  display          : block;
+  height           : 2px;
+  background       : var(--texte);
+  border-radius    : 2px;
+  transition       : transform 0.2s, opacity 0.2s;
+  transform-origin : center;
+}
+
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menu mobile */
+.menu-mobile {
+  display        : none;
+  flex-direction : column;
+  position       : fixed;
+  top            : 68px;
+  left           : 0;
+  right          : 0;
+  background     : var(--blanc);
+  border-bottom  : 1px solid var(--bordure);
+  padding        : 1rem 2rem 1.5rem;
+  z-index        : 199;
+  box-shadow     : 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.menu-mobile.ouvert { display: flex; }
+
+.menu-mobile a {
+  font-size     : 0.95rem;
+  font-weight   : 600;
+  color         : var(--texte);
+  padding       : 0.7rem 0;
+  border-bottom : 1px solid var(--fond-leger);
+  transition    : color var(--transition);
+}
+
+.menu-mobile a:last-of-type { border-bottom: none; }
+.menu-mobile a:hover { color: var(--bleu); }
+
+.menu-mobile-actions {
+  display    : flex;
+  gap        : 0.75rem;
+  margin-top : 1rem;
+  flex-wrap  : wrap;
+}
+
+/* ------------------------------------------------------------
+   4. SECTION HERO
+   ------------------------------------------------------------ */
+#hero {
+  padding    : 7rem 0 5rem;
+  background : var(--fond);
+}
+
+.hero-interieur {
+  display     : flex;
+  align-items : center;
+  gap         : 4rem;
+}
+
+.hero-texte {
+  flex : 1;
+}
+
+.hero-surtitre {
+  font-family    : var(--titre-police);
+  font-size      : 0.7rem;
+  font-weight    : 700;
+  letter-spacing : 0.15em;
+  text-transform : uppercase;
+  color          : var(--vert);
+  margin-bottom  : 1.1rem;
+}
+
+.hero-titre {
+  font-family   : var(--titre-police);
+  font-size     : clamp(2rem, 4.5vw, 3.2rem);
+  font-weight   : 900;
+  line-height   : 1.1;
+  color         : var(--texte);
+  margin-bottom : 1.25rem;
+}
+
+.hero-titre .accent {
+  color : var(--bleu);
+}
+
+.hero-description {
+  font-size     : 1.05rem;
+  color         : var(--texte-doux);
+  max-width     : 460px;
+  margin-bottom : 2rem;
+  line-height   : 1.7;
+}
+
+.hero-boutons {
+  display   : flex;
+  gap       : 1rem;
+  flex-wrap : wrap;
+}
+
+/* Visuel hero - tableau de bord simplifie */
+.hero-visuel {
+  flex            : 0 0 420px;
+  background      : var(--blanc);
+  border          : 1px solid var(--bordure);
+  border-top      : 3px solid var(--bleu);
+  border-radius   : var(--rayon);
+  padding         : 2rem;
+  box-shadow      : 0 4px 24px rgba(7, 109, 175, 0.07);
+}
+
+.visuel-titre {
+  font-family   : var(--titre-police);
+  font-size     : 0.8rem;
+  font-weight   : 700;
+  color         : var(--texte-doux);
+  text-transform : uppercase;
+  letter-spacing : 0.08em;
+  margin-bottom  : 1.5rem;
+  padding-bottom : 0.75rem;
+  border-bottom  : 1px solid var(--bordure);
+}
+
+.progression-liste {
+  display        : flex;
+  flex-direction : column;
+  gap            : 1.1rem;
+}
+
+.progression-item {}
+
+.progression-meta {
+  display         : flex;
+  justify-content : space-between;
+  align-items     : baseline;
+  margin-bottom   : 0.4rem;
+}
+
+.progression-nom {
+  font-size   : 0.83rem;
+  font-weight : 600;
+  color       : var(--texte);
+}
+
+.progression-pct {
+  font-family : var(--titre-police);
+  font-size   : 0.78rem;
+  font-weight : 700;
+  color       : var(--bleu);
+}
+
+.barre-fond {
+  height        : 5px;
+  background    : var(--fond);
+  border-radius : 50px;
+  overflow      : hidden;
+}
+
+.barre-fill {
+  height        : 100%;
+  background    : var(--bleu);
+  border-radius : 50px;
+  width         : 0;
+  transition    : width 1.1s ease;
+}
+
+.visuel-bas {
+  margin-top    : 1.5rem;
+  padding-top   : 1.25rem;
+  border-top    : 1px solid var(--fond);
+  display       : flex;
+  align-items   : center;
+  justify-content : space-between;
+}
+
+.visuel-stat {
+  text-align : center;
+}
+
+.visuel-stat strong {
+  display     : block;
+  font-family : var(--titre-police);
+  font-size   : 1.3rem;
+  font-weight : 800;
+  color       : var(--vert);
+  line-height : 1;
+}
+
+.visuel-stat span {
+  font-size : 0.72rem;
+  color     : var(--texte-doux);
+}
+
+.visuel-sep {
+  width      : 1px;
+  height     : 36px;
+  background : var(--bordure);
+}
+
+/* ------------------------------------------------------------
+   5. SECTION STATISTIQUES
+   ------------------------------------------------------------ */
+#statistiques {
+  background    : var(--blanc);
+  padding       : 4rem 0;
+  border-top    : 1px solid var(--bordure);
+  border-bottom : 1px solid var(--bordure);
+}
+
+.stats-grille {
+  display         : flex;
+  justify-content : space-around;
+  align-items     : center;
+  gap             : 2rem;
+  flex-wrap       : wrap;
+}
+
+.stat-item {
+  text-align : center;
+  flex       : 1;
+  min-width  : 140px;
+}
+
+.stat-separateur {
+  width      : 1px;
+  height     : 60px;
+  background : var(--bordure);
+  flex-shrink : 0;
+}
+
+.stat-nombre {
+  font-family : var(--titre-police);
+  font-size   : clamp(2rem, 4vw, 2.8rem);
+  font-weight : 900;
+  color       : var(--bleu);
+  line-height : 1;
+  display     : block;
+}
+
+.stat-nombre.vert { color: var(--vert); }
+
+.stat-libelle {
+  font-size   : 0.85rem;
+  color       : var(--texte-doux);
+  margin-top  : 0.35rem;
+  display     : block;
+  font-weight : 500;
+}
+
+/* ------------------------------------------------------------
+   6. SECTION FONCTIONNALITES
+   ------------------------------------------------------------ */
+#fonctionnalites {
+  padding    : var(--section-padding);
+  background : var(--fond-leger);
+}
+
+.fonctionnalites-interieur {
+  display     : flex;
+  gap         : 5rem;
+  align-items : flex-start;
+}
+
+.fonctionnalites-texte {
+  flex        : 0 0 340px;
+  position    : sticky;
+  top         : 90px;
+}
+
+.fonctionnalites-liste {
+  flex    : 1;
+  display : flex;
+  flex-direction : column;
+  gap     : 0;
+}
+
+.fonct-item {
+  display         : flex;
+  gap             : 2rem;
+  align-items     : flex-start;
+  padding         : 2rem 0;
+  border-bottom   : 1px solid var(--bordure);
+  transition      : background var(--transition);
+}
+
+.fonct-item:last-child { border-bottom: none; }
+
+.fonct-numero {
+  font-family : var(--titre-police);
+  font-size   : 2.5rem;
+  font-weight : 900;
+  color       : var(--fond);
+  line-height : 1;
+  flex-shrink : 0;
+  width       : 3rem;
+  text-align  : right;
+  user-select : none;
+  -webkit-text-stroke : 1px var(--bordure);
+}
+
+.fonct-contenu {}
+
+.fonct-titre {
+  font-family   : var(--titre-police);
+  font-size     : 1.05rem;
+  font-weight   : 700;
+  color         : var(--texte);
+  margin-bottom : 0.5rem;
+}
+
+.fonct-description {
+  font-size   : 0.9rem;
+  color       : var(--texte-doux);
+  line-height : 1.65;
+}
+
+/* ------------------------------------------------------------
+   7. SECTION FORMATIONS - AJAX
+   ------------------------------------------------------------ */
+
+/*
+  FETCH / AJAX :
+  Les formations sont chargees depuis data/formations.json
+  via fetch(). Un loader s'affiche pendant la requete,
+  puis les cartes sont generees en JS et inserees dans
+  #grille-formations. Les boutons de filtre sont aussi
+  crees dynamiquement a partir des niveaux uniques du JSON.
+*/
+
+#formations {
+  padding    : var(--section-padding);
+  background : var(--blanc);
+}
+
+.formations-entete {
+  display         : flex;
+  justify-content : space-between;
+  align-items     : flex-end;
+  margin-bottom   : 2.5rem;
+  flex-wrap       : wrap;
+  gap             : 1.5rem;
+}
+
+.filtres {
+  display   : flex;
+  gap       : 0.5rem;
+  flex-wrap : wrap;
+}
+
+.filtre-btn {
+  padding       : 0.38rem 1rem;
+  font-family   : var(--corps-police);
+  font-size     : 0.82rem;
+  font-weight   : 500;
+  border        : 1px solid var(--bordure);
+  border-radius : 50px;
+  background    : var(--blanc);
+  color         : var(--texte-doux);
+  cursor        : pointer;
+  transition    : var(--transition);
+}
+
+.filtre-btn:hover {
+  border-color : var(--bleu);
+  color        : var(--bleu);
+}
+
+.filtre-btn.actif {
+  background   : var(--bleu);
+  border-color : var(--bleu);
+  color        : var(--blanc);
+}
+
+/* Loader */
+.loader {
+  grid-column : 1 / -1;
+  padding     : 4rem;
+  text-align  : center;
+  color       : var(--texte-doux);
+  font-size   : 0.88rem;
+}
+
+.loader-cercle {
+  width            : 32px;
+  height           : 32px;
+  border           : 3px solid var(--fond);
+  border-top-color : var(--bleu);
+  border-radius    : 50%;
+  animation        : tourner 0.7s linear infinite;
+  margin           : 0 auto 0.75rem;
+}
+
+@keyframes tourner { to { transform: rotate(360deg); } }
+
+/* Grille formations */
+.grille-formations {
+  display               : grid;
+  grid-template-columns : repeat(auto-fill, minmax(280px, 1fr));
+  gap                   : 1px;
+  border                : 1px solid var(--bordure);
+  border-radius         : var(--rayon);
+  overflow              : hidden;
+  background            : var(--bordure);
+}
+
+/* Carte formation - inspiree image 1 et 3 : propre, sans decoration */
+.carte-formation {
+  background  : var(--blanc);
+  padding     : 1.75rem;
+  display     : flex;
+  flex-direction : column;
+  gap         : 0.75rem;
+  transition  : background var(--transition);
+}
+
+.carte-formation:hover {
+  background : var(--fond-leger);
+}
+
+.carte-meta {
+  display     : flex;
+  align-items : center;
+  gap         : 0.5rem;
+  flex-wrap   : wrap;
+}
+
+.badge-categorie {
+  font-size      : 0.68rem;
+  font-weight    : 700;
+  text-transform : uppercase;
+  letter-spacing : 0.06em;
+  color          : var(--bleu);
+  padding        : 0.15rem 0.5rem;
+  background     : var(--fond);
+  border-radius  : 2px;
+}
+
+.badge-niveau {
+  font-size      : 0.68rem;
+  font-weight    : 600;
+  padding        : 0.15rem 0.5rem;
+  border-radius  : 2px;
+  margin-left    : auto;
+}
+
+.niveau-debutant     { background: #e6f9ef; color: #007a30; }
+.niveau-intermediaire { background: #fff4e5; color: #8b5e00; }
+.niveau-avance       { background: #fdecea; color: #9c1f17; }
+
+.carte-titre {
+  font-family : var(--titre-police);
+  font-size   : 0.97rem;
+  font-weight : 700;
+  color       : var(--texte);
+  line-height : 1.35;
+  flex        : 1;
+}
+
+.carte-pied {
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+  padding-top     : 0.85rem;
+  border-top      : 1px solid var(--fond);
+  margin-top      : auto;
+}
+
+.carte-duree {
+  font-size   : 0.78rem;
+  color       : var(--texte-doux);
+  font-weight : 500;
+}
+
+.carte-lien {
+  font-size     : 0.78rem;
+  font-weight   : 700;
+  color         : var(--bleu);
+  transition    : color var(--transition);
+  font-family   : var(--titre-police);
+}
+
+.carte-lien:hover { color: var(--vert); }
+
+.etat-vide {
+  grid-column : 1 / -1;
+  padding     : 3rem;
+  text-align  : center;
+  color       : var(--texte-doux);
+  font-size   : 0.9rem;
+  background  : var(--blanc);
+}
+
+/* ------------------------------------------------------------
+   8. SECTION APPEL A L'ACTION
+   ------------------------------------------------------------ */
+#appel-action {
+  background : var(--bleu);
+  padding    : 5rem 0;
+}
+
+.cta-interieur {
+  display     : flex;
+  align-items : center;
+  justify-content : space-between;
+  gap         : 3rem;
+  flex-wrap   : wrap;
+}
+
+.cta-texte {}
+
+.cta-titre {
+  font-family   : var(--titre-police);
+  font-size     : clamp(1.6rem, 3vw, 2.1rem);
+  font-weight   : 900;
+  color         : var(--blanc);
+  margin-bottom : 0.6rem;
+  line-height   : 1.2;
+}
+
+.cta-description {
+  color     : rgba(255,255,255,0.78);
+  font-size : 0.97rem;
+  max-width : 420px;
+}
+
+.cta-actions {
+  display   : flex;
+  gap       : 1rem;
+  flex-wrap : wrap;
+  flex-shrink : 0;
+}
+
+/* ------------------------------------------------------------
+   9. SECTION CONTACT ET FORMULAIRE
+
+   Validation JS :
+   - Validation au blur (quand le champ perd le focus)
+   - Validation a la soumission
+   - aria-invalid + messages d'erreur associes (aria-describedby)
+   - Compteur de caracteres sur le textarea
+   - Etat de chargement pendant la soumission simulee
+   ------------------------------------------------------------ */
+#contact {
+  padding    : var(--section-padding);
+  background : var(--fond-leger);
+}
+
+.contact-interieur {
+  display : flex;
+  gap     : 4rem;
+  align-items : flex-start;
+}
+
+.contact-infos {
+  flex        : 0 0 280px;
+  position    : sticky;
+  top         : 90px;
+}
+
+.contact-infos .section-sous-titre {
+  margin-bottom : 2rem;
+}
+
+.info-ligne {
+  display       : flex;
+  align-items   : flex-start;
+  gap           : 1rem;
+  padding       : 1rem 0;
+  border-bottom : 1px solid var(--bordure);
+}
+
+.info-ligne:last-of-type { border-bottom: none; }
+
+.info-point {
+  width         : 8px;
+  height        : 8px;
+  background    : var(--vert);
+  border-radius : 50%;
+  flex-shrink   : 0;
+  margin-top    : 0.5rem;
+}
+
+.info-libelle {
+  font-family   : var(--titre-police);
+  font-size     : 0.8rem;
+  font-weight   : 700;
+  color         : var(--texte);
+  margin-bottom : 0.15rem;
+}
+
+.info-valeur {
+  font-size : 0.82rem;
+  color     : var(--texte-doux);
+  margin    : 0;
+}
+
+/* Formulaire */
+.formulaire-enveloppe {
+  flex       : 1;
+  background : var(--blanc);
+  border     : 1px solid var(--bordure);
+  border-top : 3px solid var(--bleu);
+  padding    : 2.5rem;
+  border-radius : var(--rayon);
+}
+
+.succes-message {
+  display       : flex;
+  align-items   : flex-start;
+  gap           : 1rem;
+  background    : #e6f9ef;
+  border        : 1px solid var(--vert);
+  padding       : 1.1rem 1.25rem;
+  margin-bottom : 1.5rem;
+  border-radius : var(--rayon);
+}
+
+.succes-puce {
+  width           : 22px;
+  height          : 22px;
+  background      : var(--vert);
+  border-radius   : 50%;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  flex-shrink     : 0;
+}
+
+.succes-puce::after {
+  content     : '';
+  width       : 6px;
+  height      : 10px;
+  border      : 2px solid var(--blanc);
+  border-top  : none;
+  border-left : none;
+  transform   : rotate(45deg) translate(-1px, -1px);
+}
+
+.succes-message strong {
+  display       : block;
+  font-family   : var(--titre-police);
+  font-size     : 0.88rem;
+  color         : var(--texte);
+  margin-bottom : 0.15rem;
+}
+
+.succes-message p {
+  font-size : 0.82rem;
+  color     : var(--texte-doux);
+  margin    : 0;
+}
+
+/* Champs */
+.champs-rangee {
+  display : flex;
+  gap     : 1.25rem;
+}
+
+.champ-groupe {
+  display        : flex;
+  flex-direction : column;
+  margin-bottom  : 1.25rem;
+  flex           : 1;
+}
+
+.champ-groupe label {
+  font-family   : var(--titre-police);
+  font-size     : 0.8rem;
+  font-weight   : 700;
+  color         : var(--texte);
+  margin-bottom : 0.4rem;
+}
+
+.requis { color: var(--bleu); margin-left: 0.1rem; }
+
+.champ-groupe input,
+.champ-groupe select,
+.champ-groupe textarea {
+  width         : 100%;
+  padding       : 0.65rem 0.9rem;
+  font-family   : var(--corps-police);
+  font-size     : 0.9rem;
+  color         : var(--texte);
+  background    : var(--fond-leger);
+  border        : 1px solid var(--bordure);
+  border-radius : var(--rayon);
+  outline       : none;
+  transition    : border-color var(--transition), background var(--transition);
+  appearance    : none;
+}
+
+.champ-groupe select {
+  background-image    : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234a5c52' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat   : no-repeat;
+  background-position : right 0.75rem center;
+  padding-right       : 2.25rem;
+  cursor              : pointer;
+}
+
+.champ-groupe textarea {
+  resize     : vertical;
+  min-height : 110px;
+  line-height : 1.6;
+}
+
+.champ-groupe input:focus,
+.champ-groupe select:focus,
+.champ-groupe textarea:focus {
+  border-color : var(--bleu);
+  background   : var(--blanc);
+  outline      : 2px solid rgba(7, 109, 175, 0.15);
+  outline-offset : 0;
+}
+
+/* Etats validation */
+.champ-groupe input.invalide,
+.champ-groupe select.invalide,
+.champ-groupe textarea.invalide {
+  border-color : #c0392b;
+  background   : #fdf5f5;
+}
+
+.champ-groupe input.valide,
+.champ-groupe select.valide,
+.champ-groupe textarea.valide {
+  border-color : var(--vert);
+}
+
+.erreur-msg {
+  font-size   : 0.73rem;
+  font-weight : 600;
+  color       : #c0392b;
+  margin-top  : 0.3rem;
+  min-height  : 1.1em;
+  display     : block;
+}
+
+.champ-indice {
+  font-size  : 0.72rem;
+  color      : var(--texte-doux);
+  margin-top : 0.3rem;
+  display    : block;
+  text-align : right;
+}
+
+/* Case RGPD */
+.rgpd-groupe {
+  margin-bottom : 0.75rem;
+}
+
+.rgpd-label {
+  display     : flex;
+  align-items : flex-start;
+  gap         : 0.6rem;
+  cursor      : pointer;
+  font-size   : 0.82rem;
+  color       : var(--texte-doux);
+  line-height : 1.55;
+}
+
+.rgpd-label input[type="checkbox"] {
+  width        : 16px;
+  height       : 16px;
+  flex-shrink  : 0;
+  margin-top   : 0.12rem;
+  accent-color : var(--bleu);
+  cursor       : pointer;
+}
+
+.rgpd-label a {
+  color           : var(--bleu);
+  text-decoration : underline;
+  text-underline-offset : 2px;
+}
+
+.legende-req {
+  font-size     : 0.73rem;
+  color         : var(--texte-doux);
+  margin-bottom : 1.25rem;
+}
+
+/* Bouton envoi */
+.btn-envoyer {
+  width           : 100%;
+  justify-content : center;
+  padding         : 0.85rem;
+  font-size       : 0.93rem;
+}
+
+.btn-envoyer:disabled {
+  opacity : 0.55;
+  cursor  : not-allowed;
+}
+
+/* Spinner inline */
+.spinner-svg {
+  display : none;
+  width   : 16px;
+  height  : 16px;
+}
+
+.btn-envoyer.chargement .spinner-svg { display: block; }
+.btn-envoyer.chargement .texte-btn   { opacity: 0.7; }
+
+/* ------------------------------------------------------------
+   10. PIED DE PAGE
+   ------------------------------------------------------------ */
+#pied-page {
+  background : var(--texte);
+  color      : rgba(255,255,255,0.55);
+  padding    : 3rem 0 1.5rem;
+}
+
+.pied-interieur {
+  display   : flex;
+  gap       : 3rem;
+  flex-wrap : wrap;
+  margin-bottom : 2.5rem;
+}
+
+.pied-marque {
+  flex : 0 0 260px;
+}
+
+.pied-marque img {
+  height        : 28px;
+  margin-bottom : 0.85rem;
+  filter        : brightness(0) invert(1);
+  opacity       : 0.65;
+}
+
+.pied-marque p {
+  font-size   : 0.83rem;
+  line-height : 1.65;
+  max-width   : 220px;
+}
+
+.pied-colonne {
+  flex : 1;
+  min-width : 140px;
+}
+
+.pied-colonne h3 {
+  font-family    : var(--titre-police);
+  font-size      : 0.7rem;
+  font-weight    : 700;
+  text-transform : uppercase;
+  letter-spacing : 0.12em;
+  color          : rgba(255,255,255,0.3);
+  margin-bottom  : 1rem;
+}
+
+.pied-colonne ul {
+  display        : flex;
+  flex-direction : column;
+  gap            : 0.5rem;
+}
+
+.pied-colonne a {
+  font-size  : 0.83rem;
+  color      : rgba(255,255,255,0.45);
+  transition : color var(--transition);
+}
+
+.pied-colonne a:hover { color: var(--blanc); }
+
+.pied-bas {
+  border-top      : 1px solid rgba(255,255,255,0.08);
+  padding-top     : 1.25rem;
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+  flex-wrap       : wrap;
+  gap             : 0.5rem;
+  font-size       : 0.78rem;
+}
+
+.pied-bas a {
+  color      : rgba(255,255,255,0.35);
+  transition : color var(--transition);
+}
+.pied-bas a:hover { color: rgba(255,255,255,0.75); }
+
+/* ------------------------------------------------------------
+   11. BOUTON RETOUR EN HAUT
+   ------------------------------------------------------------ */
+#retour-haut {
+  position        : fixed;
+  bottom          : 1.75rem;
+  right           : 1.75rem;
+  width           : 42px;
+  height          : 42px;
+  background      : var(--bleu);
+  color           : var(--blanc);
+  border          : none;
+  border-radius   : var(--rayon);
+  cursor          : pointer;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  z-index         : 150;
+  opacity         : 0;
+  pointer-events  : none;
+  transition      : opacity var(--transition), background var(--transition);
+}
+
+#retour-haut.visible {
+  opacity        : 1;
+  pointer-events : auto;
+}
+
+#retour-haut:hover { background: var(--vert); }
+#retour-haut svg  { width: 18px; height: 18px; }
+
+/* ------------------------------------------------------------
+   12. MEDIA QUERIES - RESPONSIVE
+   ------------------------------------------------------------ */
+
+/* Tablette */
+@media (max-width: 960px) {
+
+  .nav-liens,
+  .nav-actions { display: none; }
+
+  .burger { display: flex; }
+
+  /* Hero : colonne */
+  .hero-interieur {
+    flex-direction : column;
+    gap            : 2.5rem;
+  }
+
+  .hero-texte .hero-description { max-width: 100%; }
+
+  .hero-visuel {
+    flex    : none;
+    width   : 100%;
+    max-width : 500px;
+    align-self : center;
+  }
+
+  /* Fonctionnalites : colonne */
+  .fonctionnalites-interieur {
+    flex-direction : column;
+    gap            : 2rem;
+  }
+
+  .fonctionnalites-texte {
+    flex     : none;
+    position : static;
+  }
+
+  /* Stats */
+  .stat-separateur { display: none; }
+
+  /* Contact : colonne */
+  .contact-interieur {
+    flex-direction : column;
+    gap            : 2rem;
+  }
+
+  .contact-infos {
+    flex     : none;
+    width    : 100%;
+    position : static;
+  }
+
+  /* CTA : colonne */
+  .cta-interieur {
+    flex-direction : column;
+    text-align     : center;
+  }
+
+  .cta-description { margin: 0 auto; }
+
+  .cta-actions { justify-content: center; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  :root {
+    --section-padding : 3.5rem 0;
+  }
+
+  .conteneur { padding: 0 1.25rem; }
+
+  #hero { padding: 5.5rem 0 3rem; }
+
+  .hero-titre { font-size: 1.9rem; }
+
+  .hero-boutons {
+    flex-direction : column;
+  }
+
+  .hero-boutons .btn {
+    width           : 100%;
+    justify-content : center;
+  }
+
+  .hero-visuel { padding: 1.5rem; }
+
+  .visuel-bas { flex-wrap: wrap; gap: 1rem; }
+
+  /* Formations : 1 colonne */
+  .grille-formations {
+    grid-template-columns : 1fr;
+  }
+
+  .formations-entete {
+    flex-direction : column;
+    align-items    : flex-start;
+  }
+
+  /* Formulaire : champs en colonne */
+  .champs-rangee { flex-direction: column; gap: 0; }
+
+  .formulaire-enveloppe { padding: 1.5rem 1.25rem; }
+
+  /* Pied de page */
+  .pied-interieur { flex-direction: column; gap: 1.5rem; }
+  .pied-marque    { flex: none; }
+
+  .pied-bas {
+    flex-direction : column;
+    text-align     : center;
+    gap            : 0.35rem;
+  }
+}
