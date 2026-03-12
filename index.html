@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>SkillHub - Formations internes Asteria Group</title>
+  <meta name="description" content="SkillHub est la plateforme de formations internes d'Asteria Group. Catalogue en ligne, suivi de progression et parcours personnalises." />
+  <meta name="keywords" content="formations, e-learning, HTML, CSS, JavaScript, accessibilite, Asteria Group" />
+  <meta name="author" content="Dravel IMBOLO" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="SkillHub - Formations internes Asteria Group" />
+  <meta property="og:description" content="Catalogue de formations internes, suivi de progression et parcours personnalises." />
+  <meta property="og:url"         content="https://dravelimbolo.github.io/skillhub/" />
+
+  <!-- Polices -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       EN-TETE FIXE
+       ============================================================ -->
+  <header id="entete" role="banner">
+    <div class="conteneur">
+      <div class="entete-interieur">
+
+        <a href="#hero" class="logo" aria-label="SkillHub - retour accueil">
+          <img src="assets/logo.webp" alt="SkillHub" width="120" height="32" />
+        </a>
+
+        <nav class="nav-liens" aria-label="Navigation principale">
+          <a href="#hero">Accueil</a>
+          <a href="#fonctionnalites">Fonctionnalites</a>
+          <a href="#formations">Formations</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#contact" class="btn btn-contour">Se connecter</a>
+          <a href="#formations" class="btn btn-bleu">Voir le catalogue</a>
+        </div>
+
+        <button class="burger"
+                id="btn-burger"
+                aria-expanded="false"
+                aria-controls="menu-mobile"
+                aria-label="Ouvrir le menu de navigation">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Menu mobile -->
+    <nav id="menu-mobile"
+         class="menu-mobile"
+         aria-label="Navigation mobile"
+         hidden>
+      <a href="#hero">Accueil</a>
+      <a href="#fonctionnalites">Fonctionnalites</a>
+      <a href="#formations">Formations</a>
+      <a href="#contact">Contact</a>
+      <div class="menu-mobile-actions">
+        <a href="#contact" class="btn btn-contour">Se connecter</a>
+        <a href="#formations" class="btn btn-bleu">Voir le catalogue</a>
+      </div>
+    </nav>
+
+  </header>
+
+  <main id="contenu-principal">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section id="hero" aria-labelledby="hero-titre">
+      <div class="conteneur">
+        <div class="hero-interieur">
+
+          <div class="hero-texte apparait">
+            <p class="hero-surtitre">Plateforme interne - Asteria Group</p>
+
+            <h1 class="hero-titre" id="hero-titre">
+              Formez-vous.<br>
+              Progressez avec<br>
+              <span class="accent">SkillHub.</span>
+            </h1>
+
+            <p class="hero-description">
+              Acces a toutes les formations internes, suivi de votre avancement
+              et parcours adaptes a votre poste. Tout au meme endroit.
+            </p>
+
+            <div class="hero-boutons">
+              <a href="#formations" class="btn btn-bleu">Parcourir le catalogue</a>
+              <a href="#fonctionnalites" class="btn btn-contour">Comment ca marche</a>
+            </div>
+          </div>
+
+          <!-- Tableau de bord simplifie - visuel hero -->
+          <div class="hero-visuel apparait" aria-hidden="true">
+            <p class="visuel-titre">Ma progression</p>
+
+            <div class="progression-liste">
+
+              <div class="progression-item">
+                <div class="progression-meta">
+                  <span class="progression-nom">HTML et CSS</span>
+                  <span class="progression-pct">85%</span>
+                </div>
+                <div class="barre-fond">
+                  <div class="barre-fill" data-val="85"></div>
+                </div>
+              </div>
+
+              <div class="progression-item">
+                <div class="progression-meta">
+                  <span class="progression-nom">JavaScript</span>
+                  <span class="progression-pct">72%</span>
+                </div>
+                <div class="barre-fond">
+                  <div class="barre-fill" data-val="72"></div>
+                </div>
+              </div>
+
+              <div class="progression-item">
+                <div class="progression-meta">
+                  <span class="progression-nom">Accessibilite</span>
+                  <span class="progression-pct">60%</span>
+                </div>
+                <div class="barre-fond">
+                  <div class="barre-fill" data-val="60"></div>
+                </div>
+              </div>
+
+              <div class="progression-item">
+                <div class="progression-meta">
+                  <span class="progression-nom">Responsive design</span>
+                  <span class="progression-pct">78%</span>
+                </div>
+                <div class="barre-fond">
+                  <div class="barre-fill" data-val="78"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="visuel-bas">
+              <div class="visuel-stat">
+                <strong>3</strong>
+                <span>terminees</span>
+              </div>
+              <div class="visuel-sep" aria-hidden="true"></div>
+              <div class="visuel-stat">
+                <strong>8</strong>
+                <span>disponibles</span>
+              </div>
+              <div class="visuel-sep" aria-hidden="true"></div>
+              <div class="visuel-stat">
+                <strong>41h</strong>
+                <span>de contenu</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STATISTIQUES
+         ============================================================ -->
+    <section id="statistiques" aria-label="Chiffres cles SkillHub">
+      <div class="conteneur">
+        <div class="stats-grille">
+
+          <div class="stat-item apparait">
+            <strong class="stat-nombre">8</strong>
+            <span class="stat-libelle">Formations au catalogue</span>
+          </div>
+
+          <div class="stat-separateur" aria-hidden="true"></div>
+
+          <div class="stat-item apparait">
+            <strong class="stat-nombre vert">41h</strong>
+            <span class="stat-libelle">De contenu disponible</span>
+          </div>
+
+          <div class="stat-separateur" aria-hidden="true"></div>
+
+          <div class="stat-item apparait">
+            <strong class="stat-nombre">3</strong>
+            <span class="stat-libelle">Niveaux de difficulte</span>
+          </div>
+
+          <div class="stat-separateur" aria-hidden="true"></div>
+
+          <div class="stat-item apparait">
+            <strong class="stat-nombre vert">100%</strong>
+            <span class="stat-libelle">En ligne et accessible</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FONCTIONNALITES
+         ============================================================ -->
+    <section id="fonctionnalites" aria-labelledby="fonct-titre">
+      <div class="conteneur">
+        <div class="fonctionnalites-interieur">
+
+          <div class="fonctionnalites-texte apparait">
+            <span class="section-label">Ce que propose SkillHub</span>
+            <h2 class="section-titre" id="fonct-titre">
+              Tout ce dont vous avez besoin pour progresser
+            </h2>
+            <hr class="separateur" />
+            <p class="section-sous-titre">
+              Une plateforme pensee pour les collaborateurs d'Asteria Group.
+              Simple, directe, efficace.
+            </p>
+          </div>
+
+          <div class="fonctionnalites-liste" role="list">
+
+            <article class="fonct-item apparait" role="listitem">
+              <span class="fonct-numero" aria-hidden="true">01</span>
+              <div class="fonct-contenu">
+                <h3 class="fonct-titre">Catalogue de formations</h3>
+                <p class="fonct-description">
+                  Toutes les formations classees par domaine et niveau.
+                  Filtrage instantane sans rechargement de page grace a JavaScript.
+                </p>
+              </div>
+            </article>
+
+            <article class="fonct-item apparait" role="listitem">
+              <span class="fonct-numero" aria-hidden="true">02</span>
+              <div class="fonct-contenu">
+                <h3 class="fonct-titre">Suivi de progression</h3>
+                <p class="fonct-description">
+                  Visualisez votre avancement par competence.
+                  Les donnees sont chargees dynamiquement depuis un fichier JSON via fetch().
+                </p>
+              </div>
+            </article>
+
+            <article class="fonct-item apparait" role="listitem">
+              <span class="fonct-numero" aria-hidden="true">03</span>
+              <div class="fonct-contenu">
+                <h3 class="fonct-titre">Parcours personnalises</h3>
+                <p class="fonct-description">
+                  Des recommandations basees sur votre poste et vos objectifs
+                  definis avec votre responsable.
+                </p>
+              </div>
+            </article>
+
+            <article class="fonct-item apparait" role="listitem">
+              <span class="fonct-numero" aria-hidden="true">04</span>
+              <div class="fonct-contenu">
+                <h3 class="fonct-titre">Accessibilite WCAG</h3>
+                <p class="fonct-description">
+                  Interface entierement accessible : navigation clavier, attributs ARIA,
+                  contrastes valides et hierarchie semantique respectee.
+                </p>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FORMATIONS - Chargees via fetch() / AJAX
+         ============================================================ -->
+    <section id="formations" aria-labelledby="formations-titre">
+      <div class="conteneur">
+
+        <div class="formations-entete">
+          <div class="apparait">
+            <span class="section-label">Le catalogue</span>
+            <h2 class="section-titre" id="formations-titre">Nos formations</h2>
+          </div>
+
+          <!-- Boutons de filtre generes dynamiquement par JS -->
+          <div class="filtres"
+               id="zone-filtres"
+               role="group"
+               aria-label="Filtrer les formations par niveau"></div>
+        </div>
+
+        <!-- Zone d'affichage - peuplee par fetch() + JS -->
+        <div class="grille-formations"
+             id="grille-formations"
+             aria-live="polite"
+             aria-label="Liste des formations">
+          <!-- Loader affiche par defaut, remplace par les cartes -->
+          <div class="loader" role="status">
+            <div class="loader-cercle" aria-hidden="true"></div>
+            Chargement des formations...
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         APPEL A L'ACTION
+         ============================================================ -->
+    <section id="appel-action" aria-labelledby="cta-titre">
+      <div class="conteneur">
+        <div class="cta-interieur apparait">
+
+          <div class="cta-texte">
+            <h2 class="cta-titre" id="cta-titre">
+              Rejoignez SkillHub<br>des aujourd'hui.
+            </h2>
+            <p class="cta-description">
+              Acces immediat a l'ensemble du catalogue.
+              Aucune installation requise.
+            </p>
+          </div>
+
+          <div class="cta-actions">
+            <a href="#formations" class="btn btn-blanc">Parcourir le catalogue</a>
+            <a href="#contact" class="btn btn-contour-blanc">Nous contacter</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT ET FORMULAIRE
+         Validation JS : blur + soumission
+         aria-invalid + aria-describedby sur chaque champ
+         ============================================================ -->
+    <section id="contact" aria-labelledby="contact-titre">
+      <div class="conteneur">
+        <div class="contact-interieur">
+
+          <!-- Informations de contact -->
+          <div class="contact-infos apparait">
+            <span class="section-label">Nous ecrire</span>
+            <h2 class="section-titre" id="contact-titre">Une question ?</h2>
+            <hr class="separateur" />
+            <p class="section-sous-titre">
+              L'equipe SkillHub repond sous 24h les jours ouvres.
+            </p>
+
+            <div style="margin-top:1.5rem">
+
+              <div class="info-ligne">
+                <span class="info-point" aria-hidden="true"></span>
+                <div>
+                  <p class="info-libelle">Email</p>
+                  <p class="info-valeur">skillhub@asteriagroup.fr</p>
+                </div>
+              </div>
+
+              <div class="info-ligne">
+                <span class="info-point" aria-hidden="true"></span>
+                <div>
+                  <p class="info-libelle">Service</p>
+                  <p class="info-valeur">Direction des Ressources Humaines</p>
+                </div>
+              </div>
+
+              <div class="info-ligne">
+                <span class="info-point" aria-hidden="true"></span>
+                <div>
+                  <p class="info-libelle">Reponse garantie</p>
+                  <p class="info-valeur">Sous 24h les jours ouvres</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Formulaire -->
+          <div class="formulaire-enveloppe apparait">
+
+            <!-- Message de succes (masque par defaut) -->
+            <div id="msg-succes"
+                 class="succes-message"
+                 role="alert"
+                 aria-live="assertive"
+                 hidden>
+              <span class="succes-puce" aria-hidden="true"></span>
+              <div>
+                <strong>Message envoye avec succes.</strong>
+                <p>Merci, nous vous repondrons rapidement.</p>
+              </div>
+            </div>
+
+            <form id="form-contact"
+                  novalidate
+                  aria-label="Formulaire de contact SkillHub">
+
+              <!-- Prenom + Nom -->
+              <div class="champs-rangee">
+
+                <div class="champ-groupe">
+                  <label for="f-prenom">
+                    Prenom <span class="requis" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text"
+                         id="f-prenom"
+                         name="prenom"
+                         autocomplete="given-name"
+                         required
+                         aria-required="true"
+                         aria-describedby="err-prenom"
+                         placeholder="Marie" />
+                  <span id="err-prenom"
+                        class="erreur-msg"
+                        role="alert"
+                        aria-live="polite"></span>
+                </div>
+
+                <div class="champ-groupe">
+                  <label for="f-nom">
+                    Nom <span class="requis" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text"
+                         id="f-nom"
+                         name="nom"
+                         autocomplete="family-name"
+                         required
+                         aria-required="true"
+                         aria-describedby="err-nom"
+                         placeholder="Dupont" />
+                  <span id="err-nom"
+                        class="erreur-msg"
+                        role="alert"
+                        aria-live="polite"></span>
+                </div>
+
+              </div>
+
+              <!-- Email -->
+              <div class="champ-groupe">
+                <label for="f-email">
+                  Email professionnel <span class="requis" aria-hidden="true">*</span>
+                </label>
+                <input type="email"
+                       id="f-email"
+                       name="email"
+                       autocomplete="email"
+                       required
+                       aria-required="true"
+                       aria-describedby="err-email"
+                       placeholder="marie.dupont@asteriagroup.fr" />
+                <span id="err-email"
+                      class="erreur-msg"
+                      role="alert"
+                      aria-live="polite"></span>
+              </div>
+
+              <!-- Sujet -->
+              <div class="champ-groupe">
+                <label for="f-sujet">
+                  Sujet <span class="requis" aria-hidden="true">*</span>
+                </label>
+                <select id="f-sujet"
+                        name="sujet"
+                        required
+                        aria-required="true"
+                        aria-describedby="err-sujet">
+                  <option value="">Choisir un sujet...</option>
+                  <option value="formation">Question sur une formation</option>
+                  <option value="acces">Probleme de connexion</option>
+                  <option value="progression">Suivi de progression</option>
+                  <option value="autre">Autre demande</option>
+                </select>
+                <span id="err-sujet"
+                      class="erreur-msg"
+                      role="alert"
+                      aria-live="polite"></span>
+              </div>
+
+              <!-- Message -->
+              <div class="champ-groupe">
+                <label for="f-message">
+                  Message <span class="requis" aria-hidden="true">*</span>
+                </label>
+                <textarea id="f-message"
+                          name="message"
+                          rows="4"
+                          maxlength="500"
+                          required
+                          aria-required="true"
+                          aria-describedby="err-message compteur-msg"
+                          placeholder="Decrivez votre demande..."></textarea>
+                <span id="compteur-msg"
+                      class="champ-indice"
+                      aria-live="polite">0 / 500</span>
+                <span id="err-message"
+                      class="erreur-msg"
+                      role="alert"
+                      aria-live="polite"></span>
+              </div>
+
+              <!-- RGPD -->
+              <div class="champ-groupe rgpd-groupe">
+                <label class="rgpd-label">
+                  <input type="checkbox"
+                         id="f-rgpd"
+                         name="rgpd"
+                         required
+                         aria-required="true"
+                         aria-describedby="err-rgpd" />
+                  <span>
+                    J'accepte que mes donnees soient utilisees pour traiter ma demande.
+                    <span class="requis" aria-hidden="true">*</span>
+                  </span>
+                </label>
+                <span id="err-rgpd"
+                      class="erreur-msg"
+                      role="alert"
+                      aria-live="polite"></span>
+              </div>
+
+              <p class="legende-req">
+                <span class="requis" aria-hidden="true">*</span> Champs obligatoires
+              </p>
+
+              <button type="submit"
+                      id="btn-envoyer"
+                      class="btn btn-bleu btn-envoyer">
+                <span class="texte-btn">Envoyer le message</span>
+                <svg class="spinner-svg"
+                     aria-hidden="true"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2.5"
+                     stroke-linecap="round">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+                    <animateTransform attributeName="transform" type="rotate"
+                      from="0 12 12" to="360 12 12" dur=".6s" repeatCount="indefinite"/>
+                  </path>
+                </svg>
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       PIED DE PAGE
+       ============================================================ -->
+  <footer id="pied-page" role="contentinfo">
+    <div class="conteneur">
+      <div class="pied-interieur">
+
+        <div class="pied-marque">
+          <img src="assets/logo.webp" alt="SkillHub" width="120" height="28" />
+          <p>La plateforme de formations internes d'Asteria Group.</p>
+        </div>
+
+        <nav class="pied-colonne" aria-label="Liens du site">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="#hero">Accueil</a></li>
+            <li><a href="#fonctionnalites">Fonctionnalites</a></li>
+            <li><a href="#formations">Formations</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <nav class="pied-colonne" aria-label="Informations legales">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#mentions">Mentions legales</a></li>
+            <li><a href="#confidentialite">Confidentialite</a></li>
+            <li><a href="#accessibilite">Accessibilite</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="pied-bas">
+        <p>&copy; <time datetime="2025">2025</time> SkillHub - Asteria Group</p>
+        <a href="#mentions">Mentions legales</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bouton retour en haut -->
+  <button id="retour-haut" aria-label="Retourner en haut de la page">
+    <svg aria-hidden="true"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2.5"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
